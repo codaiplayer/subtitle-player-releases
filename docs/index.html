@@ -52,7 +52,7 @@
   <h2>설치</h2>
   <div class="card small">
     <p><b>안드로이드</b>: APK를 받아 열면 "알 수 없는 앱 설치"를 허용해 달라고 합니다. 허용 후 설치하세요. 업데이트도 같은 방법입니다.</p>
-    <p><b>윈도우</b>: zip을 풀고 <code>CodaiPlayer.exe</code>를 실행합니다(설치 없음). SmartScreen 경고가 뜨면 "추가 정보 → 실행"을 누르세요(서명 인증서가 없어서 뜹니다). 영상 파일을 exe에 끌어다 놓아도 열립니다.</p>
+    <p><b>윈도우</b>: 파일 하나(<code>CodaiPlayer-버전.exe</code>)를 받아 실행합니다(설치 없음, 첫 실행은 몇 초 걸립니다). SmartScreen 경고가 뜨면 "추가 정보 → 실행"을 누르세요(서명 인증서가 없어서 뜹니다). 영상 파일을 exe에 끌어다 놓아도 열립니다.</p>
     <p><b>연결</b>: 첫 실행에서 서버 주소와 초대 코드를 넣고 아이디를 만듭니다. 초대 코드는 운영자에게 받으세요.</p>
   </div>
 
@@ -69,7 +69,7 @@
   // the newest release (pre-releases included), with a direct link to its Windows zip
   fetch("https://api.github.com/repos/codaiplayer/subtitle-player-releases/releases?per_page=1").then((r) => r.ok ? r.json() : null)
     .then((l) => { const j = l && l[0]; if (!j) return; document.getElementById("ver").textContent = j.tag_name + (j.prerelease ? " (실험)" : "");
-      const win = (j.assets || []).find((a) => /win64.*\.zip$/.test(a.name)); if (win) document.querySelector("a.btn.alt").href = win.browser_download_url;
+      const win = (j.assets || []).find((a) => /\.(exe|zip)$/.test(a.name)); if (win) document.querySelector("a.btn.alt").href = win.browser_download_url;
       const apk = (j.assets || []).find((a) => /\.apk$/.test(a.name)); if (apk) { const b = document.querySelector("a.btn"); b.href = apk.browser_download_url; b.textContent = "안드로이드 APK 받기"; } }).catch(() => {});
 </script>
 </body>
