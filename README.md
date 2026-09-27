@@ -4,7 +4,7 @@
 
 - 프로젝트 페이지: https://codaiplayer.github.io/subtitle-player-releases/
 - 다운로드: [Releases](https://github.com/codaiplayer/subtitle-player-releases/releases/latest)
-  - `CodaiPlayer-<버전>.exe` — 윈도우 (파일 하나, 설치 없이 실행)
+  - `CodaiPlayer-Setup-<버전>.exe` — 윈도우 설치 프로그램 (권장) · `CodaiPlayer-<버전>.exe` — 설치 없이 실행하는 단일 파일
   - `CodaiPlayer-<버전>.apk` — 안드로이드 (APK 직접 설치)
 - [이용 약관 · 개인정보 처리방침](https://codaiplayer.github.io/subtitle-player-releases/terms.html)
 - 문의·권리 침해 신고: codai.player@gmail.com
