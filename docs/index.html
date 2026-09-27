@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codai Player · 자막 플레이어</title>
+<meta name="description" content="내 폰과 PC에 있는 영상에 자동으로 한국어 자막을 붙여 주는 플레이어. 영상은 올라가지 않고, 소리만 보내 자막을 만듭니다.">
+<style>
+  :root { --bg: #101114; --fg: #e8e8ea; --muted: #9a9ca3; --accent: #7cc4ff; --card: #1a1b20; --line: #2a2b31; }
+  @media (prefers-color-scheme: light) { :root { --bg: #fafafa; --fg: #17181c; --muted: #5e6068; --accent: #1a73e8; --card: #fff; --line: #e3e4e8; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 34px; margin: 0 0 6px; }
+  h2 { font-size: 20px; margin: 36px 0 10px; }
+  p { margin: 8px 0; }
+  .lead { color: var(--muted); font-size: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin: 14px 0; }
+  .btn { display: inline-block; padding: 10px 16px; border-radius: 10px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; margin: 6px 8px 6px 0; }
+  .btn.alt { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  ul { padding-left: 20px; } li { margin: 4px 0; }
+  .muted { color: var(--muted); } .small { font-size: 14px; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; }
+  code { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Codai Player <span class="muted" style="font-size:18px;font-weight:400">자막 플레이어</span></h1>
+  <p class="lead">내 폰과 PC에 있는 영상에 자동으로 자막을 붙여 주는 플레이어. 영상은 어디에도 올라가지 않습니다.</p>
+
+  <div class="card">
+    <a class="btn" href="https://github.com/codaiplayer/subtitle-player-releases/releases/latest">안드로이드 APK 받기</a>
+    <a class="btn alt" href="https://github.com/codaiplayer/subtitle-player-releases/releases/latest">윈도우 앱 받기</a>
+    <p class="small muted">최신 버전 <span id="ver">-</span> · 초대 코드가 있어야 서버에 연결할 수 있어요.</p>
+  </div>
+
+  <h2>무엇을 하나요</h2>
+  <ul>
+    <li>폰이나 PC에 있는 영상을 재생하면서 자막을 보여 줍니다.</li>
+    <li>같은 영상의 자막을 누가 이미 만들어 두었으면 바로 받아 옵니다.</li>
+    <li>없으면 영상의 <b>소리만</b> 서버에 보내 음성 인식과 번역으로 자막을 만듭니다. 보고 있는 자리부터 먼저 만들어져 1~2분 안에 자막이 나타나기 시작합니다.</li>
+    <li>만든 자막은 같은 영상을 가진 다른 사용자에게 공유됩니다.</li>
+  </ul>
+
+  <h2>보내지 않는 것</h2>
+  <ul>
+    <li>영상 파일. 서버로 가는 것은 파일 해시, 소리, 자막 텍스트뿐입니다.</li>
+    <li>보낸 소리는 자막을 만든 뒤 바로 지웁니다.</li>
+  </ul>
+
+  <h2>설치</h2>
+  <div class="card small">
+    <p><b>안드로이드</b>: APK를 받아 열면 "알 수 없는 앱 설치"를 허용해 달라고 합니다. 허용 후 설치하세요. 업데이트도 같은 방법입니다.</p>
+    <p><b>윈도우</b>: zip을 풀고 <code>CodaiPlayer.exe</code>를 실행합니다(설치 없음). SmartScreen 경고가 뜨면 "추가 정보 → 실행"을 누르세요(서명 인증서가 없어서 뜹니다). 영상 파일을 exe에 끌어다 놓아도 열립니다.</p>
+    <p><b>연결</b>: 첫 실행에서 서버 주소와 초대 코드를 넣고 아이디를 만듭니다. 초대 코드는 운영자에게 받으세요.</p>
+  </div>
+
+  <h2>후원</h2>
+  <p>서버 한 대와 GPU 한 장으로 돌아갑니다. 전기세와 서버 유지에 보태 주시면 감사합니다. 후원은 자발적이고, 후원 여부와 상관없이 같은 기능을 씁니다.</p>
+  <a class="btn alt" href="https://github.com/sponsors/codaiplayer">후원하기 (GitHub Sponsors)</a>
+
+  <h2>약관과 개인정보</h2>
+  <p class="small">앱을 쓰려면 <a href="terms.html">이용 약관</a>에 동의해야 합니다. 권리자의 삭제 요청은 <a href="mailto:codai.player@gmail.com">codai.player@gmail.com</a>으로 보내 주세요. 확인 후 해당 영상의 자막을 내리고 다시 받지 않습니다.</p>
+
+  <footer>Codai Player · 개인이 운영하는 소규모 서비스입니다 · <a href="mailto:codai.player@gmail.com">문의</a> · <a href="https://github.com/codaiplayer/subtitle-player-releases">GitHub</a></footer>
+</main>
+<script>
+  // the latest release tag, when the public repo exists
+  fetch("https://api.github.com/repos/codaiplayer/subtitle-player-releases/releases/latest").then((r) => r.ok ? r.json() : null)
+    .then((j) => { if (j && j.tag_name) document.getElementById("ver").textContent = j.tag_name; }).catch(() => {});
+</script>
+</body>
+</html>
