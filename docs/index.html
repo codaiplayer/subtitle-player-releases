@@ -30,8 +30,8 @@
   <p class="lead">내 폰과 PC에 있는 영상에 자동으로 자막을 붙여 주는 플레이어. 영상은 어디에도 올라가지 않습니다.</p>
 
   <div class="card">
-    <a class="btn" href="https://github.com/codaiplayer/subtitle-player-releases/releases/latest">안드로이드 APK 받기</a>
-    <a class="btn alt" href="https://github.com/codaiplayer/subtitle-player-releases/releases/latest">윈도우 앱 받기</a>
+    <a class="btn" href="https://github.com/codaiplayer/subtitle-player-releases/releases">안드로이드 APK 받기 (준비 중)</a>
+    <a class="btn alt" href="https://github.com/codaiplayer/subtitle-player-releases/releases">윈도우 앱 받기</a>
     <p class="small muted">최신 버전 <span id="ver">-</span> · 초대 코드가 있어야 서버에 연결할 수 있어요.</p>
   </div>
 
@@ -66,9 +66,11 @@
   <footer>Codai Player · 개인이 운영하는 소규모 서비스입니다 · <a href="mailto:codai.player@gmail.com">문의</a> · <a href="https://github.com/codaiplayer/subtitle-player-releases">GitHub</a></footer>
 </main>
 <script>
-  // the latest release tag, when the public repo exists
-  fetch("https://api.github.com/repos/codaiplayer/subtitle-player-releases/releases/latest").then((r) => r.ok ? r.json() : null)
-    .then((j) => { if (j && j.tag_name) document.getElementById("ver").textContent = j.tag_name; }).catch(() => {});
+  // the newest release (pre-releases included), with a direct link to its Windows zip
+  fetch("https://api.github.com/repos/codaiplayer/subtitle-player-releases/releases?per_page=1").then((r) => r.ok ? r.json() : null)
+    .then((l) => { const j = l && l[0]; if (!j) return; document.getElementById("ver").textContent = j.tag_name + (j.prerelease ? " (실험)" : "");
+      const win = (j.assets || []).find((a) => /win64.*\.zip$/.test(a.name)); if (win) document.querySelector("a.btn.alt").href = win.browser_download_url;
+      const apk = (j.assets || []).find((a) => /\.apk$/.test(a.name)); if (apk) { const b = document.querySelector("a.btn"); b.href = apk.browser_download_url; b.textContent = "안드로이드 APK 받기"; } }).catch(() => {});
 </script>
 </body>
 </html>
